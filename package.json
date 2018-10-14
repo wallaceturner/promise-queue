@@ -1,14 +1,14 @@
 {
-  "author": "Mikhail Davydov <i@azproduction.ru>",
-  "description": "Promise-based queue",
-  "name": "promise-queue",
+  "author": "Wallace Turner <wallaceturner@gmail.com>",
+  "description": "Promise-based queue with timeout. Forked of https://github.com/promise-queue/promise-queue",
+  "name": "promise-queue-timeout",
   "version": "2.2.5",
   "contributors": [
-    "Mikhail Davydov <i@azproduction.ru>"
+    "Wallace Turner <wallaceturner@gmail.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/azproduction/promise-queue.git"
+    "url": "git://github.com/wallaceturner/promise-queue-timeout.git"
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -31,10 +31,7 @@
     "coverage": "make coverage",
     "clean": "make clean"
   },
-  "bugs": {
-    "url": "https://github.com/azproduction/promise-queue/issues"
-  },
-  "homepage": "https://github.com/azproduction/promise-queue#readme",
+  
   "main": "index.js",
   "directories": {
     "test": "test"
