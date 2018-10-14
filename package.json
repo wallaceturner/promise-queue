@@ -2,7 +2,7 @@
   "author": "Wallace Turner <wallaceturner@gmail.com>",
   "description": "Promise-based queue with timeout. Forked of https://github.com/promise-queue/promise-queue",
   "name": "promise-queue-timeout",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "contributors": [
     "Wallace Turner <wallaceturner@gmail.com>"
   ],
