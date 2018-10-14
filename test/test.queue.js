@@ -319,6 +319,41 @@ describe('queue', function () {
                     expect(listener).to.have.been.calledBefore(listener2);
                 }).then(done, done);
         });
+
+        it('timeout', function (done) {
+            var queue = new Queue(1, Infinity, { timeout: 200 });        
+
+            queue
+                .add(function () {
+                    return new vow.Promise(function (resolve, reject) {
+                        
+                    });
+                })
+                .then(function () {
+                    throw new Error('It should be rejected');
+                }, function (error) {
+                    expect(error).to.equal('message did not complete execution after timeout of 200');
+                })
+                .then(done, done);
+        });
+
+        it('completes before timeout', function (done) {
+            var queue = new Queue(1, Infinity, { timeout: 200 });
+
+            queue
+                .add(function () {
+                    return new vow.Promise(function (resolve) {
+                        setTimeout(()=>{
+                            resolve(true);
+                        },100)
+                        
+                    })
+                })
+                .then(function (result) {
+                    expect(result).to.be.true;
+                })
+                .then(done, done);
+        });
     });
 
     describe('getPendingLength', function () {
@@ -401,4 +436,5 @@ describe('queue', function () {
         });
 
     });
+    
 });
