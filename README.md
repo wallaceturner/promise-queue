@@ -14,21 +14,34 @@ npm install promise-queue-timeout
 ### Add a timeout of 2 seconds
 
 ```js
-var queue = new Queue(1, Infinity, { timeout: 2000 });
+import PromiseQueue = require('promise-queue-timeout');
+var queue = new PromiseQueue(1, Infinity, { timeout: 2000 });
 ```
 
-### Add a promise that does not resolve
+### Add two functions to the queue. The first does not resolve and will time out.
 ```js            
-queue.add(function () {
-        return new Promise(function (resolve, reject) {
-            //does not resolve
-        });
-    })
-    .then(function () {
-        //does not reach here
+let func1 = () => {  return new Promise(function (resolve, reject) {   }); } //does not resolve
+
+queue.add(func1)
+    .then((result:any)=> {
+        
     }, function (error) {
         console.error(error);//logs 'message did not complete execution after timeout of 2000'
     })
+
+let func2 = () => {  return new Promise(function (resolve, reject) {  resolve('func2')  }); } //resolves
+queue.add(func2)
+    .then((result:any)=> {
+        console.log('complete with result: ' + result)
+    }, function (error) {
+        //no error expected
+    })
+```
+
+### Output
+```js 
+message did not complete execution after timeout of 2000
+complete with result: func2
 ```
 
 
